@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. Kounhinir SOME - Mathématiques Appliquées</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a3a6c;
+            --secondary: #2a5ca7;
+            --accent: #e63946;
+            --warning: #FFE66D;
+            --success: #95E1D3;
+            --info: #A8D8FF;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --gold: #D4AF37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f7f9fc 0%, #e8f4f8 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #8B7BC7 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(107, 71, 181, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--warning);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--warning);
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-photo-container {
+            margin-bottom: 2rem;
+        }
+        
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--warning);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 2rem;
+        }
+        
+        .tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-info {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(135deg, rgba(107, 71, 181, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(78, 205, 196, 0.2);
+        }
+        
+        .info-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-item i {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--warning) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            min-width: 25px;
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .expertise-item {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.2);
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .expertise-item:nth-child(2) {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44B0A3 100%);
+        }
+        
+        .expertise-item:nth-child(3) {
+            background: linear-gradient(135deg, #A8D8FF 0%, #7BB8FF 100%);
+        }
+        
+        .expertise-item:nth-child(4) {
+            background: linear-gradient(135deg, #FFE66D 0%, #FFC85F 100%);
+            color: var(--dark);
+        }
+        
+        .expertise-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+        
+        .expertise-item h4 {
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .expertise-item h4 i {
+            margin-right: 10px;
+            -webkit-text-fill-color: inherit;
+            background: none;
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 150px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .stat-item:nth-child(2) {
+            border-left-color: var(--accent);
+        }
+        
+        .stat-item:nth-child(3) {
+            border-left-color: var(--warning);
+        }
+        
+        .stat-item:nth-child(4) {
+            border-left-color: var(--info);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .timeline-item:nth-child(2) .timeline-content {
+            border-top-color: var(--accent);
+        }
+        
+        .timeline-item:nth-child(3) .timeline-content {
+            border-top-color: var(--warning);
+        }
+        
+        .timeline-item:nth-child(4) .timeline-content {
+            border-top-color: var(--info);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: -15px;
+            border: 8px solid transparent;
+            border-left-color: white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -15px;
+            right: auto;
+            border-left-color: transparent;
+            border-right-color: white;
+        }
+        
+        .timeline-content h3 {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .timeline-content .date {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--warning) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item:nth-child(odd)::before,
+        .timeline-item:nth-child(even)::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--warning) 100%);
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 30px;
+            right: -12px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15);
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -12px;
+            right: auto;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--info) 100%);
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.15);
+        }
+        
+        /* Publications */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .publication-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .publication-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .pub-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .pub-header h3 {
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+        
+        .pub-body {
+            padding: 20px;
+        }
+        
+        .pub-authors {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .pub-journal {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .pub-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(107, 71, 181, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light);
+            color: var(--dark);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
+        }
+        
+        /* Supervision */
+        .supervision-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+        
+        .supervision-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .supervision-card:nth-child(2) {
+            border-left-color: var(--accent);
+        }
+        
+        .supervision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .supervision-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--warning) 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .supervision-card:nth-child(2) .supervision-header {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--info) 100%);
+        }
+        
+        .supervision-header i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .supervision-header h3 {
+            font-size: 1.3rem;
+        }
+        
+        .supervision-body {
+            padding: 25px;
+        }
+        
+        .supervision-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid rgba(107, 71, 181, 0.1);
+        }
+        
+        .supervision-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .supervision-date {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--warning) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1rem;
+        }
+        
+        .supervision-name {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .supervision-title {
+            font-style: italic;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .supervision-details {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background: linear-gradient(135deg, rgba(107, 71, 181, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(107, 71, 181, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-category h3 {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            font-size: 1.3rem;
+        }
+        
+        .skill-item {
+            margin-bottom: 18px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .skill-bar {
+            height: 12px;
+            background-color: rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+        
+        /* Contact */
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--warning) 100%);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(107, 71, 181, 0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #6B47B5 50%, var(--dark) 100%);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--warning);
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--info) 100%);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 8px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 22px;
+                right: auto;
+            }
+            
+            .timeline-content::before {
+                left: -15px !important;
+                right: auto !important;
+                border-right-color: white !important;
+                border-left-color: transparent !important;
+            }
+            
+            .supervision-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, var(--primary) 0%, #8B7BC7 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .publications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .supervision-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fa-solid fa-square-root"></i>
+                <span>Prof. SOME</span>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#education">Formation</a></li>
+                    <li><a href="#experience">Expérience</a></li>
+                    <li><a href="#supervision">Encadrement</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="profile-photo-container">
+                <img src="photosome.jpeg" alt="Prof. Kounhinir SOME" class="profile-photo">
+            </div>
+            <h1>Prof. Kounhinir SOME</h1>
+            <p>Professeur Titulaire en Mathématiques Appliquées & Recherche Opérationnelle</p>
+            <div class="hero-tags">
+                <div class="tag">Optimisation Multiobjectif</div>
+                <div class="tag">Recherche Opérationnelle</div>
+                <div class="tag">Métaheuristiques</div>
+                <div class="tag">Modélisation Mathématique</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section>
+        <div class="container">
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">34</span>
+                    <span class="stat-label">Publications</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">11</span>
+                    <span class="stat-label">Communications</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Étudiants encadrés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12+</span>
+                    <span class="stat-label">Années d'expérience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Professeur Titulaire en Mathématiques Appliquées & Recherche Opérationnelle</h3>
+                    <p>Docteur en Recherche Opérationnelle spécialisé en optimisation multiobjectif, métaheuristiques et modélisation mathématique. Mes recherches portent sur le développement de nouvelles méthodes pour résoudre des problèmes d'optimisation complexes avec applications dans divers domaines.</p>
+                    <p>Actuellement Professeur Titulaire à l'Université Norbert ZONGO (Burkina Faso), j'ai encadré de nombreux étudiants en thèse et master, et publié de nombreux articles dans des revues scientifiques internationales. Je dirige également l'équipe de recherche en « Modélisation et aide à la décision » du Laboratoire de Mathématiques, Informatique et Applications (L@MIA).</p>
+                    
+                    <h3 style="margin-top: 2rem;">Expertises</h3>
+                    <div class="expertise-grid">
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-chart-line"></i> Optimisation Multiobjectif</h4>
+                            <p>Méthodes Aliénor, algorithmes métaheuristiques, recherche de front de Pareto</p>
+                        </div>
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-cogs"></i> Modélisation Mathématique</h4>
+                            <p>Création de modèles pour problèmes complexes en recherche opérationnelle</p>
+                        </div>
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-calculator"></i> Méthodes Numériques</h4>
+                            <p>Algorithmes avancés pour la résolution numérique de problèmes d'optimisation</p>
+                        </div>
+                        <div class="expertise-item">
+                            <h4><i class="fas fa-project-diagram"></i> Recherche Opérationnelle</h4>
+                            <p>Applications pratiques pour l'aide à la décision dans divers domaines</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <h3>Informations Personnelles</h3>
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Nom complet</strong>
+                            <p>Kounhinir SOME</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <strong>Titre</strong>
+                            <p>Professeur Titulaire, CAMES</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>sokous11@gmail.com<br>some@unz.br</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Téléphone</strong>
+                            <p>(00226) 71228887</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Localisation</strong>
+                            <p>Université Norbert ZONGO<br>Koudougou, Burkina Faso</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-birthday-cake"></i>
+                        <div>
+                            <strong>Date de naissance</strong>
+                            <p>11 janvier 1981 à Bobo-Dioulasso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reste du contenu identique au code fourni -->
+    <!-- Education Section -->
+    <section id="education" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Formation Académique</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2009 – 2013</span>
+                        <h3>Doctorat Unique en Recherche Opérationnelle</h3>
+                        <p><strong>Université de Ouagadougou, Burkina Faso</strong></p>
+                        <p>Thème : Nouvelle métaleuristique basée sur méthode Aliénor pour la résolution des problèmes d'optimisation multiobjectif : théorie et applications.</p>
+                        <p>Soutenu le 27 juillet 2013</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2007 – 2008</span>
+                        <h3>DEA en Mathématiques Appliquées et Calculs Scientifiques</h3>
+                        <p><strong>Université de Ouagadougou, Burkina Faso</strong></p>
+                        <p>Thème : Méthode Aliénor pour l'optimisation multiobjectif.</p>
+                        <p>Soutenu le 06 décembre 2008</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2006 – 2007</span>
+                        <h3>Maîtrise de Mathématiques</h3>
+                        <p><strong>Université de Ouagadougou, Burkina Faso</strong></p>
+                        <p>Obtenu en juillet 2007</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2005 – 2006</span>
+                        <h3>Licence de Mathématiques</h3>
+                        <p><strong>Université de Ouagadougou, Burkina Faso</strong></p>
+                        <p>Obtenu en septembre 2006</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expérience Professionnelle</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2024 – Présent</span>
+                        <h3>Professeur Titulaire</h3>
+                        <p><strong>Université Norbert ZONGO, Koudougou</strong></p>
+                        <p>Mathématiques Appliquées option recherche opérationnelle</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2024 – Présent</span>
+                        <h3>Directeur des Innovations Pédagogiques</h3>
+                        <p><strong>Université Norbert ZONGO, Koudougou</strong></p>
+                        <p>Responsable de l'Équipe de recherche en « Modélisation et aide à la décision » du Laboratoire de Mathématiques, Informatique et Applications (L@MIA)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2020 – 2024</span>
+                        <h3>Maître de conférences</h3>
+                        <p><strong>Université Norbert ZONGO, Koudougou</strong></p>
+                        <p>Mathématiques Appliquées option recherche opérationnelle</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">2018 – 2022</span>
+                        <h3>Directeur des Affaires Académiques, de l'Orientation et de l'Information</h3>
+                        <p><strong>Université Norbert ZONGO, Koudougou</strong></p>
+                        <p>Responsable de la mise en œuvre des normes LMD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supervision Section -->
+    <section id="supervision" style="background-color: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Encadrement d'Étudiants</h2>
+            </div>
+            <div class="supervision-container">
+                <!-- Thèses de Doctorat -->
+                <div class="supervision-card">
+                    <div class="supervision-header">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Thèses de Doctorat Encadrées</h3>
+                    </div>
+                    <div class="supervision-body">
+                        <div class="supervision-item">
+                            <span class="supervision-date">2020 – 2023</span>
+                            <div class="supervision-name">BAMOGO Wendinda</div>
+                            <div class="supervision-title">Amélioration et extension de quelques métaleuristiques mono-objectifs stochastiques pour les problèmes multiobjectifs continues non linéaires</div>
+                            <div class="supervision-details">Soutenue le 13 décembre 2023, Université Norbert ZONGO (Burkina Faso)</div>
+                        </div>
+                        <div class="supervision-item">
+                            <span class="supervision-date">2020 – 2024</span>
+                            <div class="supervision-name">SAMA Jean de la Croix</div>
+                            <div class="supervision-title">Nouvelles approches de résolution des problèmes de l'optimisation floue : théories et applications</div>
+                            <div class="supervision-details">Soutenue le 06 janvier 2024, Université Norbert ZONGO (Burkina Faso)</div>
+                        </div>
+                        <div class="supervision-item">
+                            <span class="supervision-date">2020 – 2024</span>
+                            <div class="supervision-name">TOUGMA Appolinaire</div>
+                            <div class="supervision-title">Contribution à la résolution des problèmes d'optimisation multiobjectif théoriques et numériques</div>
+                            <div class="supervision-details">Soutenue le 03 février 2024, Université Norbert ZONGO (Burkina Faso)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mémoires de Master -->
+                <div class="supervision-card">
+                    <div class="supervision-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Mémoires de Master Encadrés</h3>
+                    </div>
+                    <div class="supervision-body">
+                        <div class="supervision-item">
+                            <span class="supervision-date">2023 – 2024</span>
+                            <div class="supervision-name">Bassolé Detchio Pascal</div>
+                            <div class="supervision-title">Résolution de problèmes de contrôle optimal multiobjectif sous contraintes dynamiques</div>
+                            <div class="supervision-details">Soutenu le 07 août 2025, Université Norbert ZONGO (Burkina Faso)</div>
+                        </div>
+                        <div class="supervision-item">
+                            <span class="supervision-date">2021 – 2022</span>
+                            <div class="supervision-name">LOMPO Palamanga</div>
+                            <div class="supervision-title">Extension de la méthode Teaching-Learning-Based-Optimization (TLBO) pour la résolution des problèmes d'optimisation multiobjectif non linéaires</div>
+                            <div class="supervision-details">Soutenu le 22 décembre 2022, Université Joseph Ki-ZERBO (Burkina Faso)</div>
+                        </div>
+                        <div class="supervision-item">
+                            <span class="supervision-date">2021 – 2022</span>
+                            <div class="supervision-name">OUEDRAOGO Youssouf</div>
+                            <div class="supervision-title">Conditions d'optimalité de Karush-Kunh-Tucker pour l'optimisation multiobjectif convexe dans un espace quotient des nombres flous</div>
+                            <div class="supervision-details">Soutenu le 08 décembre 2022, Université Norbert ZONGO (Burkina Faso)</div>
+                        </div>
+                        <div class="supervision-item">
+                            <span class="supervision-date">2021 – 2022</span>
+                            <div class="supervision-name">NAGALO Abdoul-Razakou</div>
+                            <div class="supervision-title">Extension du cuckoo search algorithm pour l'optimisation multiobjectif non linéaire</div>
+                            <div class="supervision-details">Soutenu le 08 décembre 2022, Université Norbert ZONGO (Burkina Faso)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Publications Scientifiques</h2>
+            </div>
+            <div class="publications-grid">
+                <!-- Publication 1 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Improving of moma-plus hybrid approach by using some new penalty functions</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">K. S. A Zoungrana A Tougma</div>
+                        <div class="pub-journal">
+                            <strong>Journal of Contemporary Applied Mathematics</strong><br>
+                            Volume 15, no. 2, pp. 20–56, 2025
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.62476/jcam.151.14" target="_blank" class="btn btn-primary">DOI</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 2 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Multiobjective belugas whale optimizer for pareto optimal solution search</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">K. S. Amidou Zoungrana Applinaire TOUGMA</div>
+                        <div class="pub-journal">
+                            <strong>Computer and Information Science, vol 2536. Springer, Cham.</strong><br>
+                            Pages 155–179, 2025
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.1007/978-3-031-98327-6_12" target="_blank" class="btn btn-primary">DOI</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 3 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Operator preserving optimum method for solving multiobjective optimization problems</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">K. S. Amidou Zoungrana Applinaire TOUGMA</div>
+                        <div class="pub-journal">
+                            <strong>IAENG International Journal of Applied Mathematics</strong><br>
+                            Volume 55, no. 9, pp. 3062–3070, 2025
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 4 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Global optimization algorithm based on augmented lagrangian for multiobjective optimization problems</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">A. T. Kounhini SOME</div>
+                        <div class="pub-journal">
+                            <strong>Romanian Journal of Mathematics and computer science</strong><br>
+                            Volume 15, no. 1, pp. 40–58, 2025
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://rjm-cs.utcb.ro/wp-content/uploads/2025/03/2025v15i1_5.pdf" target="_blank" class="btn btn-primary">PDF</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 5 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Algorithm based on the grey wolves attack technique method for generating pareto optimal front</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">W. Bamogo, A. Som, and K. Some</div>
+                        <div class="pub-journal">
+                            <strong>IAENG International Journal of Applied Mathematics</strong><br>
+                            Volume 54, no. 3, 2024
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://www.iaeng.org/IJAM/issues_v54/issue_3/IJAM_54_3_20.pdf" target="_blank" class="btn btn-primary">PDF</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 6 -->
+                <div class="publication-card">
+                    <div class="pub-header">
+                        <h3>Null set concept for optimal solutions of fuzzy nonlinear optimization problems</h3>
+                    </div>
+                    <div class="pub-body">
+                        <div class="pub-authors">J. C. Sama and K. Some</div>
+                        <div class="pub-journal">
+                            <strong>Iranian Journal of Fuzzy Systems</strong><br>
+                            Volume 21, no. 2, pp. 1–18, 2024
+                        </div>
+                        <div class="pub-links">
+                            <a href="https://doi.org/10.22111/IJFS.2024.45511.8034" target="_blank" class="btn btn-primary">DOI</a>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Improving of moma-plus hybrid approach by using some new penalty functions</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. S. A Zoungrana A Tougma</div>
+						<div class="pub-journal">
+							<strong>Journal of Contemporary Applied Mathematics</strong><br>
+							Volume 15, no. 2, pp. 20–56, 2025
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.62476/jcam.151.14" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Multobjective belugas whale optimizer for pareto optimal solution search</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. S. Amidou Zoungrana Applinaire TOUGMA</div>
+						<div class="pub-journal">
+							<strong>Computer and Information Science</strong><br>
+							Volume 2536. Springer, Cham., pp. 155–179, 2025
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.1007/978-3-031-98327-6_12" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Operator preserving optimum method for solving multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. S. Amidou Zoungrana Applinaire TOUGMA</div>
+						<div class="pub-journal">
+							<strong>IAENG International Journal of Applied Mathematics</strong><br>
+							Volume 55, no. 9, pp. 3062–3070, 2025
+						</div>
+						<div class="pub-links"></div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Karush-kuhn-tucker optimal conditions for pseudo invex fuzzy nonlinear optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. S. Doubassi Parfait Traore</div>
+						<div class="pub-journal">
+							<strong>Annals of Fuzzy Mathematics and Informatics</strong><br>
+							Volume 29, no. 2, pp. 191–213, 2025
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.30948/afmi.2025.29.2.191" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Global optimization algorithm based on augmented lagrangian for multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. T. Kounhinir SOME</div>
+						<div class="pub-journal">
+							<strong>Romanian Journal of Mathematics and computer science</strong><br>
+							Volume 15, no. 1, pp. 40–58, 2025
+						</div>
+						<div class="pub-links">
+							<a href="https://rjm-cs.utcb.ro/wp-content/uploads/2025/03/2025v15i1_5.pdf" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Algorithm based on the grey wolves attack technique method for generating pareto optimal front</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">W. Bamogo, A. Som, and K. Some</div>
+						<div class="pub-journal">
+							<strong>IAENG International Journal of Applied Mathematics</strong><br>
+							Volume 54, no. 3, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://www.iaeng.org/IJAM/issues_v54/issue_3/IJAM_54_3_20.pdf" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Null set concept for optimal solutions of fuzzy nonlinear optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. C. Sama and K. Some</div>
+						<div class="pub-journal">
+							<strong>Iranian Journal of Fuzzy Systems</strong><br>
+							Volume 21, no. 2, pp. 1–18, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.22111/IJFS.2024.45511.8034" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Solving fuzzy nonlinear optimization problems using null set concept</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. D. L. C. Sama and K. Some</div>
+						<div class="pub-journal">
+							<strong>International Journal of Fuzzy Systems</strong><br>
+							Volume 26, no. 2, pp. 674–685, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.1007/s40815-023-01626-7" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>New approach to solving fuzzy multiobjective linear fractional optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. D. L. C. Sama, D. P. Traore, and K. Some</div>
+						<div class="pub-journal">
+							<strong>International Journal of Analysis and Applications</strong><br>
+							Volume 22, p. 11, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.28924/2291-8639-22-2024-11" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Hyperbolic augmented lagrangian algorithm for multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Tougma, A. Kaboré, and K. Somé</div>
+						<div class="pub-journal">
+							<strong>Gulf Journal of Mathematics</strong><br>
+							Volume 16, no. 2, pp. 151–170, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.56947/gjom.v16i2.1876" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Inexact exponential penalty function with the augmented lagrangian for multiobjective optimization algorithms</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Tougma and K. Some</div>
+						<div class="pub-journal">
+							<strong>Journal of Applied Mathematics</strong><br>
+							Volume 2024, pp. 1–19, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.1155/2024/9615743" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Solving multiobjective optimization problems with inequality constraint using an augmented lagrangian function</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Tougma and K. Some</div>
+						<div class="pub-journal">
+							<strong>Statistics, Optimization Information Computing</strong><br>
+							Volume 12, pp. 1364–1381, 2024
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.19139/soic-2310-5070-1875" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Performance study of multiobjective optimizer method based on grey wolf attack technics</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">W. Bamogo, K. Some, and G. Degla</div>
+						<div class="pub-journal">
+							<strong>Journal of Computer Science and Applied Mathematics</strong><br>
+							Volume 5, no. 2, pp. 53–73, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.37418/jcsam.5.2.2" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>A new hybridization for improving the convergence of the moma-plus method</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Compaoré, A. Som, and K. Somé</div>
+						<div class="pub-journal">
+							<strong>Advances in Mathematics: Scientific Journal</strong><br>
+							Volume 12, no. 8, pp. 701–718, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.37418/amsj.12.8.1" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Hybrid approach for solving fuzzy fractional linear optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. de la Croix Sama, A. Compaore, and K. Some</div>
+						<div class="pub-journal">
+							<strong>Annals Of Fuzzy Mathematics and Informatics</strong><br>
+							Volume 25, no. 2, pp. 111–123, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.30948/AFMI.2023.25.2.111" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Hybrid method based on exponential penalty function and moma-plus method for multiobjective optimization</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Som, K. Some, and A. Compaore</div>
+						<div class="pub-journal">
+							<strong>Journal of Computer Science and Applied Mathematics</strong><br>
+							Volume 5, no. 2, pp. 35–51, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.37418/jcsam.5.2.1" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Extension of the projected gradient and armĳo’s rule concepts for solving convex nonlinear multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Tougma, K. Somé, and A. Compaoré</div>
+						<div class="pub-journal">
+							<strong>Applied Analysis and Optimization</strong><br>
+							Volume 7, no. 3, pp. 263–278, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.21203/rs.3.rs-2491296/v1" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Grey wolves attack process for the pareto optimal front construction in the multiobjective optimization</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. P. Wendinda Bamogo Kounhinir Somé</div>
+						<div class="pub-journal">
+							<strong>European Journal of Pure and Applied Mathematics</strong><br>
+							Volume 16, no. 1, pp. 595–608, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.17654/0975045223006" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Obtaining optimal pareto solutions using a hybrid approach combining-constraint and moma-plus method</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Zoungrana, K. Some, and J. Poda</div>
+						<div class="pub-journal">
+							<strong>International Journal of Numerical Methods and Applications</strong><br>
+							Volume 23, no. 1, pp. 107–129, 2023
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.17654/0975045223006" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Convergence of the simple exact barrier-penalty function for nonliear multiobjective optimization</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Compaoré, K. Somé, and J. Poda</div>
+						<div class="pub-journal">
+							<strong>Journal of Computer Science and Applied Mathematics</strong><br>
+							Volume 4, no. 2, pp. 31–50, 2022
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.37418/jcsam.4.2.1" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Effect of aggregation function in moma-plus method for obtaining pareto optimal solutions</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Som, K. Some, A. Compaore, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>Applications and Applied Mathematics</strong><br>
+							Volume 17, no. 2, 2022
+						</div>
+						<div class="pub-links"></div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Exponential penalty function with moma-plus for the multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Som, K. Some, A. Compaore, and B. Some</div>
+						<div class="pub-journal">
+							<strong>Applied Analysis and Optimization</strong><br>
+							Volume 5, no. 3, pp. 323–334, 2021
+						</div>
+						<div class="pub-links">
+							<a href="http://yokohamapublishers.jp/online2/opaao/vol5/p323.html" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Performances assessment of moma-plus method on multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Som, K. Some, A. Compaore, and B. Some</div>
+						<div class="pub-journal">
+							<strong>European Journal of Pure and Applied Mathematics</strong><br>
+							Volume 13, no. 1, pp. 48–68, 2020
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.29020/nybg.ejpam.v13i1.3581" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Mobile secondary ideal point and moma-plus method in two-phase method for solving bi-objective assignment problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. Poda, K. Somé, A. Compaoré, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>Universal Journal of Mathematics and Mathematical Sciences</strong><br>
+							Volume 12, no. 1, pp. 31–52, 2019
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.17654/UM012010031" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Modified hybrid grey wolf optimizer and genetic algorithm (hmgwoga) for global optimization of positive functions</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">W. O. Sawadogo, P. O. F. Ouédraogo, K. Somé, N. Alaa, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>Advances in Differential Equations and Control Processes</strong><br>
+							Volume 20, no. 2, pp. 187–206, 2019
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.17654/DE020020187" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Efficiency of moma-plus method to solve some fully fuzzy l-r triangular multiobjective linear programs</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Compaoré, K. Somé, J. Poda, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>Journal of Mathematics Research</strong><br>
+							Volume 10, no. 2, pp. 77–87, 2018
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.5539/jmr.v10n2p77" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Adaptation of the moma-plus method to the resolution of transportation and assignment problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">J. Poda, K. Somé, A. Compaoré, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>International Journal of Numerical Methods and Applications</strong><br>
+							Volume 22, no. 2, pp. 25–44, 2018
+						</div>
+						<div class="pub-links">
+							<a href="https://www.iphsci.com/adaptation_of_the_moma.pdf" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>New approach to the resolution of triangular fuzzy linear programs: moma-plus method</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">A. Compaore, K. Some, and B. Some</div>
+						<div class="pub-journal">
+							<strong>International Journal of Applied Mathematical Research</strong><br>
+							Volume 6, no. 4, pp. 115–120, 2017
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.14419/ijamr.v6i4.8069" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Improving of numerical performance of the moma method</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. Some, A. Compaore, W. O. Sawadogo, and B. Some</div>
+						<div class="pub-journal">
+							<strong>International Journal of Mathematics and Computer Research</strong><br>
+							Volume 5, no. 5, pp. 1817–1827, 2017
+						</div>
+						<div class="pub-links"></div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>New metric procedure of multi-decisions makers choice</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">Z. Savadogo, P. O. F. Ouedraogo, K. Some, O. So, B. Ulungu, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>Far East Journal of Applied Mathematics</strong><br>
+							Volume 95, no. 5, pp. 329–341, 2016
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.17654/AM095050329" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Application of the genetic algorithms to the identification of the hydrodynamic parameters</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">S. Wenddabo Olivier, A. Noureddine, S. Kounhinir, and S. Blaise</div>
+						<div class="pub-journal">
+							<strong>International Journal of Applied Mathematical Research</strong><br>
+							Volume 4, no. 1, p. 78, 2015
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.14419/ijamr.v4i1.4023" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>A theoretical foundation metaheuristic method to solve some multiobjectif optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. Some, B. Ulungu, W. O. Sawadogo, and B. Some</div>
+						<div class="pub-journal">
+							<strong>International Journal of Applied Mathematical Research</strong><br>
+							Volume 2, no. 4, pp. 464–474, 2013
+						</div>
+						<div class="pub-links">
+							<a href="https://doi.org/10.14419/ijamr.v2i4.902" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>Numerical solution of laplace’s equation in a cracked polygon</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">O. M. Zongo, S. Kam, K. Some, and A. Ouedraogo</div>
+						<div class="pub-journal">
+							<strong>Advances in Applied Science Research</strong><br>
+							Volume 4, no. 5, pp. 173–183, 2013
+						</div>
+						<div class="pub-links">
+							<a href="https://www.primescholars.com/articles/numerical-solution-of-laplaces-equation-in-a-cracked-polygon.pdf" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="publication-card">
+					<div class="pub-header">
+						<h3>A new method for solving nonlinear multiobjective optimization problems</h3>
+					</div>
+					<div class="pub-body">
+						<div class="pub-authors">K. Somé, B. Ulungu, I. H. Mohamed, and B. Somé</div>
+						<div class="pub-journal">
+							<strong>JP Journal of Mathematical Sciences</strong><br>
+							Volume 2, no. 1/2, pp. 1–18, 2011
+						</div>
+						<div class="pub-links">
+							<a href="http://iphsci.com/math_sci_abstract_and_references_vol_two_is_one_two_june_aug_two_zero_elwan_pages_one_eighten.pdf" target="_blank" class="btn btn-primary">PDF</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" class="btn btn-accent">Voir toutes les publications (34)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compétences</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Informatique</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>MATLAB</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>R</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Maple</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Langues</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Français</span>
+                            <span>Natif</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Anglais</span>
+                            <span>Assez Bien</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Logiciels</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>LaTeX</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Word</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Excel</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>PowerPoint</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>sokous11@gmail.com<br>some@unz.br</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3>Téléphone</h3>
+                                <p>(00226) 71228887</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Adresse</h3>
+                                <p>Université Norbert ZONGO<br>
+                                BP 376 Koudougou, Burkina Faso</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <h3>Statut</h3>
+                                <p>Professeur Titulaire, CAMES</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envoyez un message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Prof. Kounhinir SOME</h3>
+                    <p>Professeur Titulaire en Mathématiques Appliquées spécialisé en optimisation, recherche opérationnelle et métaleuristiques. Directeur des Innovations Pédagogiques à l'Université Norbert ZONGO.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#education">Formation</a></li>
+                        <li><a href="#experience">Expérience</a></li>
+                        <li><a href="#supervision">Encadrement</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> sokous11@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> (00226) 71228887</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Université Norbert ZONGO, Koudougou</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Koudougou, le 15 septembre 2025</p>
+                <p>&copy; 2025 Prof. Kounhinir SOME. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple form validation and submission handling
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // In a real implementation, you would send this data to a server
+                console.log('Form submitted:', formData);
+                
+                // Show success message
+                alert('Merci pour votre message! Je vous répondrai dans les plus brefs délais.');
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
